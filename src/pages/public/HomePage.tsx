@@ -9,11 +9,13 @@ import {
   Truck,
 } from 'lucide-react'
 import { categories } from '../../data/mockProducts'
+import { unsplashImages } from '../../data/unsplashImages'
 import { useCrmStore } from '../../store/crmStore'
 import { CategoryCard } from '../../components/store/CategoryCard'
 import { ProductCard } from '../../components/store/ProductCard'
 import { Button } from '../../components/ui/Button'
 import { Card } from '../../components/ui/Card'
+import { FurnitureImage } from '../../components/ui/FurnitureImage'
 
 const process = [
   { title: 'Замер', text: 'Менеджер назначает удобную дату и фиксирует размеры.', icon: Ruler },
@@ -50,11 +52,13 @@ export function HomePage() {
             <span>CRM + кабинет клиента</span>
           </div>
         </div>
-        <div className="hero-showroom" aria-label="Визуализация мебельного шоурума">
-          <div className="showroom-window" />
-          <div className="showroom-sofa" />
-          <div className="showroom-table" />
-          <div className="showroom-lamp" />
+        <div className="hero-photo" aria-label="Премиальный интерьер мебельного магазина">
+          <FurnitureImage
+            alt="Светлая гостиная с современной мебелью"
+            fallbackLabel="Интерьер мебельного магазина"
+            loading="eager"
+            src={unsplashImages.heroInterior}
+          />
           <div className="showroom-panel">
             <strong>ORD-2606-101</strong>
             <span>В производстве</span>
@@ -96,16 +100,37 @@ export function HomePage() {
       <section className="section">
         <div className="benefit-grid">
           <Card>
+            <div className="benefit-photo">
+              <FurnitureImage
+                alt="Современная гостиная с диваном"
+                fallbackLabel="Интерьер"
+                src={unsplashImages.livingRooms}
+              />
+            </div>
             <ShieldCheck size={24} />
             <h3>Прозрачные этапы</h3>
             <p>Заказ проходит путь от заявки до сборки, статусы видны клиенту и менеджеру.</p>
           </Card>
           <Card>
+            <div className="benefit-photo">
+              <FurnitureImage
+                alt="Современная кухня с островом"
+                fallbackLabel="Кухня"
+                src={unsplashImages.kitchens}
+              />
+            </div>
             <BadgeCheck size={24} />
             <h3>Документы в кабинете</h3>
             <p>Договоры, спецификации и счета можно открыть и подписать демо-подписью.</p>
           </Card>
           <Card>
+            <div className="benefit-photo">
+              <FurnitureImage
+                alt="Шкаф и прихожая в современном интерьере"
+                fallbackLabel="Хранение"
+                src={unsplashImages.wardrobes}
+              />
+            </div>
             <MessageCircle size={24} />
             <h3>Источники заявок</h3>
             <p>Онлайн-магазин, WhatsApp, Instagram, звонки и 2GIS собраны в CRM.</p>

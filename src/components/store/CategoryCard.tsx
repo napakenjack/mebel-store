@@ -12,7 +12,9 @@ import {
 } from 'lucide-react'
 import type { CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
+import { getCategoryImage } from '../../data/unsplashImages'
 import type { ProductCategory } from '../../types/product'
+import { FurnitureImage } from '../ui/FurnitureImage'
 
 const iconMap = {
   Sofa,
@@ -37,6 +39,13 @@ export function CategoryCard({ category }: CategoryCardProps) {
 
   return (
     <Link className="category-card" style={accentStyle} to={`/catalog/${category.id}`}>
+      <span className="category-photo">
+        <FurnitureImage
+          alt={`Категория мебели: ${category.name}`}
+          fallbackLabel={category.name}
+          src={getCategoryImage(category.id)}
+        />
+      </span>
       <span className="category-icon">
         <Icon size={22} />
       </span>

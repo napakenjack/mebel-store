@@ -2,6 +2,8 @@ import { EyeOff, Pencil, Plus } from 'lucide-react'
 import { Button } from '../../components/ui/Button'
 import { Card } from '../../components/ui/Card'
 import { Badge } from '../../components/ui/Badge'
+import { FurnitureImage } from '../../components/ui/FurnitureImage'
+import { getProductImage } from '../../data/unsplashImages'
 import { useCrmStore } from '../../store/crmStore'
 import { formatMoney } from '../../utils/formatters'
 
@@ -19,6 +21,7 @@ export function CatalogManagePage() {
         <table>
           <thead>
             <tr>
+              <th>Фото</th>
               <th>Название</th>
               <th>Категория</th>
               <th>Цена от</th>
@@ -31,6 +34,15 @@ export function CatalogManagePage() {
           <tbody>
             {products.map((product) => (
               <tr key={product.id}>
+                <td>
+                  <div className="catalog-thumb">
+                    <FurnitureImage
+                      alt={`${product.name}: фото в CRM-каталоге`}
+                      fallbackLabel={product.category}
+                      src={getProductImage(product.slug)}
+                    />
+                  </div>
+                </td>
                 <td>{product.name}</td>
                 <td>{product.category}</td>
                 <td>{formatMoney(product.priceFrom)}</td>

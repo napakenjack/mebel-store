@@ -4,6 +4,8 @@ import { useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { Button } from '../../components/ui/Button'
 import { Card } from '../../components/ui/Card'
+import { FurnitureImage } from '../../components/ui/FurnitureImage'
+import { getProductImage } from '../../data/unsplashImages'
 import { useCrmStore } from '../../store/crmStore'
 
 export function CheckoutPage() {
@@ -108,8 +110,12 @@ export function CheckoutPage() {
 
       {product && (
         <div className="selected-product-strip">
-          <div className={`mini-product-visual tone-${product.imageTone}`}>
-            <span className="furniture-shape" />
+          <div className="mini-product-visual">
+            <FurnitureImage
+              alt={`${product.name}: выбранный товар`}
+              fallbackLabel={product.category}
+              src={getProductImage(product.slug)}
+            />
           </div>
           <div>
             <strong>{product.name}</strong>

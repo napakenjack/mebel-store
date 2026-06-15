@@ -1,9 +1,11 @@
 import { ArrowRight, ClipboardPlus } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { getProductImage } from '../../data/unsplashImages'
 import type { Product } from '../../types/product'
 import { formatMoney } from '../../utils/formatters'
 import { Badge } from '../ui/Badge'
 import { Button } from '../ui/Button'
+import { FurnitureImage } from '../ui/FurnitureImage'
 
 type ProductCardProps = {
   product: Product
@@ -12,8 +14,12 @@ type ProductCardProps = {
 export function ProductCard({ product }: ProductCardProps) {
   return (
     <article className="product-card">
-      <Link aria-label={`Открыть ${product.name}`} className={`product-visual tone-${product.imageTone}`} to={`/product/${product.slug}`}>
-        <span className="furniture-shape" />
+      <Link aria-label={`Открыть ${product.name}`} className="product-visual" to={`/product/${product.slug}`}>
+        <FurnitureImage
+          alt={`${product.name}, категория ${product.category}`}
+          fallbackLabel={product.name}
+          src={getProductImage(product.slug)}
+        />
       </Link>
       <div className="product-card-body">
         <div className="product-card-title">

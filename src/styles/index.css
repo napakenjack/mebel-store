@@ -361,6 +361,7 @@ p {
   padding: 8px 12px;
 }
 
+.hero-photo,
 .hero-showroom {
   aspect-ratio: 1.08;
   background:
@@ -373,66 +374,11 @@ p {
   position: relative;
 }
 
-.showroom-window {
-  background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.65) 1px, transparent 1px),
-    linear-gradient(180deg, #dbeafe, #f8fafc);
-  background-size: 72px 100%;
-  border: 1px solid rgba(37, 99, 235, 0.18);
-  height: 44%;
-  left: 8%;
-  position: absolute;
-  top: 8%;
-  width: 84%;
-}
-
-.showroom-sofa {
-  background: linear-gradient(135deg, #1e293b, #334155);
-  border-radius: 24px 24px 8px 8px;
-  bottom: 22%;
-  height: 22%;
-  left: 13%;
-  position: absolute;
-  width: 62%;
-}
-
-.showroom-sofa::before,
-.showroom-sofa::after {
-  background: #0f172a;
-  border-radius: 8px;
-  bottom: -20%;
-  content: '';
-  height: 24%;
-  position: absolute;
-  width: 10%;
-}
-
-.showroom-sofa::before {
-  left: 8%;
-}
-
-.showroom-sofa::after {
-  right: 8%;
-}
-
-.showroom-table {
-  background: #b45309;
-  border-radius: 999px;
-  bottom: 14%;
-  height: 9%;
-  position: absolute;
-  right: 10%;
-  width: 34%;
-}
-
-.showroom-lamp {
-  background: #facc15;
-  border-radius: 999px 999px 14px 14px;
-  height: 15%;
-  position: absolute;
-  right: 12%;
-  top: 18%;
-  width: 13%;
+.hero-photo .furniture-image-shell,
+.hero-photo .furniture-image,
+.hero-photo .image-fallback {
+  height: 100%;
+  width: 100%;
 }
 
 .showroom-panel {
@@ -516,8 +462,9 @@ p {
   border-radius: 8px;
   display: grid;
   gap: 14px;
-  min-height: 190px;
-  padding: 22px;
+  min-height: 270px;
+  overflow: hidden;
+  padding: 0 0 22px;
   transition:
     border-color 160ms ease,
     transform 160ms ease;
@@ -536,7 +483,56 @@ p {
   display: inline-flex;
   height: 42px;
   justify-content: center;
+  margin: -36px 22px 0;
+  position: relative;
   width: 42px;
+  z-index: 1;
+}
+
+.category-card strong,
+.category-card p {
+  padding-inline: 22px;
+}
+
+.category-photo {
+  display: block;
+  height: 150px;
+  overflow: hidden;
+}
+
+.furniture-image-shell,
+.furniture-image,
+.image-fallback {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.furniture-image-shell {
+  background: #0f172a;
+  overflow: hidden;
+  position: relative;
+}
+
+.furniture-image {
+  inset: 0;
+  object-fit: cover;
+  position: absolute;
+}
+
+.image-fallback {
+  align-items: center;
+  background:
+    linear-gradient(135deg, rgba(15, 23, 42, 0.88), rgba(37, 99, 235, 0.72)),
+    #0f172a;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  inset: 0;
+  min-height: inherit;
+  padding: 18px;
+  position: absolute;
+  text-align: center;
 }
 
 .product-grid {
@@ -553,66 +549,13 @@ p {
 
 .product-visual {
   display: block;
-  min-height: 220px;
+  height: 250px;
   overflow: hidden;
   position: relative;
 }
 
 .product-visual-large {
-  min-height: 560px;
-}
-
-.tone-blue {
-  background: linear-gradient(135deg, #dbeafe, #bfdbfe 45%, #eff6ff);
-}
-
-.tone-teal {
-  background: linear-gradient(135deg, #ccfbf1, #99f6e4 45%, #f0fdfa);
-}
-
-.tone-amber {
-  background: linear-gradient(135deg, #fef3c7, #fde68a 45%, #fffbeb);
-}
-
-.tone-violet {
-  background: linear-gradient(135deg, #ede9fe, #ddd6fe 45%, #f5f3ff);
-}
-
-.tone-rose {
-  background: linear-gradient(135deg, #ffe4e6, #fecdd3 45%, #fff1f2);
-}
-
-.tone-green {
-  background: linear-gradient(135deg, #dcfce7, #bbf7d0 45%, #f0fdf4);
-}
-
-.furniture-shape {
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(51, 65, 85, 0.78));
-  border-radius: 24px 24px 8px 8px;
-  bottom: 22%;
-  height: 28%;
-  left: 18%;
-  position: absolute;
-  width: 64%;
-}
-
-.furniture-shape::before,
-.furniture-shape::after {
-  background: rgba(15, 23, 42, 0.86);
-  border-radius: 8px;
-  bottom: -26%;
-  content: '';
-  height: 28%;
-  position: absolute;
-  width: 12%;
-}
-
-.furniture-shape::before {
-  left: 10%;
-}
-
-.furniture-shape::after {
-  right: 10%;
+  height: min(620px, 68svh);
 }
 
 .product-card-body {
@@ -657,10 +600,18 @@ p {
 .benefit-grid .card {
   display: grid;
   gap: 12px;
+  overflow: hidden;
 }
 
 .benefit-grid svg {
   color: var(--blue);
+}
+
+.benefit-photo {
+  border-radius: 8px;
+  height: 170px;
+  margin: -8px -8px 8px;
+  overflow: hidden;
 }
 
 .process-grid {
@@ -884,10 +835,6 @@ textarea:focus {
   width: 92px;
 }
 
-.mini-product-visual .furniture-shape {
-  border-radius: 12px 12px 5px 5px;
-}
-
 .role-card {
   display: grid;
   gap: 16px;
@@ -1080,7 +1027,7 @@ textarea:focus {
 
 table {
   border-collapse: collapse;
-  min-width: 920px;
+  min-width: 980px;
   width: 100%;
 }
 
@@ -1396,6 +1343,13 @@ th {
   flex-wrap: nowrap;
 }
 
+.catalog-thumb {
+  border-radius: 8px;
+  height: 62px;
+  overflow: hidden;
+  width: 92px;
+}
+
 @media (max-width: 1180px) {
   .hero-section,
   .product-detail,
@@ -1469,6 +1423,7 @@ th {
     min-height: auto;
   }
 
+  .hero-photo,
   .hero-showroom {
     min-height: 360px;
   }

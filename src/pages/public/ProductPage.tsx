@@ -4,6 +4,8 @@ import { ProductCard } from '../../components/store/ProductCard'
 import { Badge } from '../../components/ui/Badge'
 import { Button } from '../../components/ui/Button'
 import { EmptyState } from '../../components/ui/EmptyState'
+import { FurnitureImage } from '../../components/ui/FurnitureImage'
+import { getProductImage } from '../../data/unsplashImages'
 import { useCrmStore } from '../../store/crmStore'
 import { formatMoney } from '../../utils/formatters'
 
@@ -23,8 +25,12 @@ export function ProductPage() {
   return (
     <section className="page-section">
       <div className="product-detail">
-        <div className={`product-visual product-visual-large tone-${product.imageTone}`}>
-          <span className="furniture-shape" />
+        <div className="product-visual product-visual-large">
+          <FurnitureImage
+            alt={`${product.name}: фото товара`}
+            fallbackLabel={product.name}
+            src={getProductImage(product.slug)}
+          />
         </div>
         <div className="product-detail-copy">
           <Badge tone="info">{product.category}</Badge>
