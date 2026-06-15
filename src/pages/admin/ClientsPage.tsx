@@ -1,13 +1,16 @@
 import { Link } from 'react-router-dom'
 import { Card } from '../../components/ui/Card'
+import { useAuthStore } from '../../store/authStore'
 import { useCrmStore } from '../../store/crmStore'
 import { formatDate, formatMoney } from '../../utils/formatters'
 
 export function ClientsPage() {
-  const clients = useCrmStore((state) => state.clients)
+  const session = useAuthStore((state) => state.session)
+  const allClients = useCrmStore((state) => state.clients)
+  const clients = session?.role === 'manager' ? allClients.filter((client) => client.manager === session.name) : allClients
 
   return (
-    <Card title="Clients / Клиенты" eyebrow="CRM">
+    <Card title={session?.role === 'manager' ? 'Мои клиенты' : 'Clients / Клиенты'} eyebrow="CRM">
       <div className="table-wrap">
         <table>
           <thead>

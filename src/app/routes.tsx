@@ -8,6 +8,7 @@ import { ClientsPage } from '../pages/admin/ClientsPage'
 import { DashboardPage } from '../pages/admin/DashboardPage'
 import { DocumentsPage } from '../pages/admin/DocumentsPage'
 import { LeadsPage } from '../pages/admin/LeadsPage'
+import { ManagersPage } from '../pages/admin/ManagersPage'
 import { OrderDetailPage } from '../pages/admin/OrderDetailPage'
 import { OrdersPage } from '../pages/admin/OrdersPage'
 import { SettingsPage } from '../pages/admin/SettingsPage'
@@ -17,6 +18,7 @@ import { ClientDocumentsPage } from '../pages/client/ClientDocumentsPage'
 import { ClientOrderDetailPage } from '../pages/client/ClientOrderDetailPage'
 import { ClientOrdersPage } from '../pages/client/ClientOrdersPage'
 import { ClientProfilePage } from '../pages/client/ClientProfilePage'
+import { ClientNotificationsPage } from '../pages/client/ClientNotificationsPage'
 import { CatalogPage } from '../pages/public/CatalogPage'
 import { CategoryPage } from '../pages/public/CategoryPage'
 import { CheckoutPage } from '../pages/public/CheckoutPage'
@@ -67,6 +69,14 @@ export function AppRoutes() {
         element={
           <AppShell title="Документы" variant="client">
             <ClientDocumentsPage />
+          </AppShell>
+        }
+      />
+      <Route
+        path="client/notifications"
+        element={
+          <AppShell title="Уведомления" variant="client">
+            <ClientNotificationsPage />
           </AppShell>
         }
       />
@@ -156,6 +166,14 @@ export function AppRoutes() {
         element={
           <AppShell title="Документы" variant="admin">
             <DocumentsPage />
+          </AppShell>
+        }
+      />
+      <Route
+        path="admin/managers"
+        element={
+          <AppShell title="Менеджеры" variant="admin">
+            <ManagersPage />
           </AppShell>
         }
       />

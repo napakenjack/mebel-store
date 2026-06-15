@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { useState } from 'react'
 import { Navigate } from 'react-router-dom'
 import { useAuthStore } from '../../store/authStore'
 import { AdminSidebar } from './AdminSidebar'
@@ -12,6 +13,7 @@ type AppShellProps = {
 }
 
 export function AppShell({ children, title, variant }: AppShellProps) {
+  const [drawerOpen, setDrawerOpen] = useState(false)
   const session = useAuthStore((state) => state.session)
 
   if (!session) {
@@ -26,11 +28,14 @@ export function AppShell({ children, title, variant }: AppShellProps) {
     return <Navigate replace to="/client" />
   }
 
+  const closeDrawer = () => setDrawerOpen(false)
+
   return (
-    <div className="app-shell">
-      {variant === 'admin' ? <AdminSidebar /> : <ClientSidebar />}
+    <div className={drawerOpen ? 'app-shell drawer-open' : 'app-shell'}>
+      <div className="drawer-scrim" onClick={closeDrawer} />
+      {variant === 'admin' ? <AdminSidebar onNavigate={closeDrawer} /> : <ClientSidebar onNavigate={closeDrawer} />}
       <main className="workspace">
-        <Topbar title={title} />
+        <Topbar onMenuClick={() => setDrawerOpen(true)} title={title} />
         <div className="workspace-content">{children}</div>
       </main>
     </div>

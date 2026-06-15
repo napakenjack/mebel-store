@@ -10,8 +10,8 @@ export function PublicLayout() {
       </main>
       <footer className="public-footer">
         <div>
-          <strong>Furniture CRM</strong>
-          <p>Демо PWA для мебельного магазина: витрина, личный кабинет и CRM в одном приложении.</p>
+          <strong>Amanat Mebel</strong>
+          <p>Ваш магазин мебели: витрина, личный кабинет и CRM в одном PWA-приложении.</p>
         </div>
         <span>Алматы · WhatsApp +7 700 000 00 00</span>
       </footer>

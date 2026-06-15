@@ -9,9 +9,8 @@ import type { Document } from '../../types/crm'
 
 export function ClientDocumentsPage() {
   const clientName = useAuthStore((state) => state.session?.name ?? 'Айгуль С.')
-  const documents = useCrmStore((state) =>
-    state.documents.filter((document) => document.clientName === clientName),
-  )
+  const allDocuments = useCrmStore((state) => state.documents)
+  const documents = allDocuments.filter((document) => document.clientName === clientName)
   const signDocument = useCrmStore((state) => state.signDocument)
   const [selected, setSelected] = useState<Document | null>(null)
   const [accepted, setAccepted] = useState(false)
@@ -37,7 +36,12 @@ export function ClientDocumentsPage() {
               document={document}
               key={document.id}
               onOpen={(item) => setSelected(item)}
-              onSign={signDocument}
+              onSign={(documentId) => {
+                const item = documents.find((document) => document.id === documentId)
+                if (item) {
+                  setSelected(item)
+                }
+              }}
             />
           ))}
         </div>

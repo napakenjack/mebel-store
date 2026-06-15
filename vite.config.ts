@@ -8,11 +8,18 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.svg', 'icon-192.svg', 'icon-512.svg'],
+      includeAssets: [
+        'favicon.svg',
+        'icon-192.svg',
+        'icon-512.svg',
+        'icons/favicon.png',
+        'icons/app-icon-192.png',
+        'icons/app-icon-512.png',
+      ],
       manifest: {
-        name: 'Furniture CRM',
-        short_name: 'Furniture CRM',
-        description: 'PWA-демо для мебельного магазина: витрина, кабинет клиента и CRM.',
+        name: 'Amanat Mebel - ваш магазин мебели',
+        short_name: 'Amanat Mebel',
+        description: 'PWA-демо Amanat Mebel: онлайн-магазин мебели, кабинет клиента и CRM.',
         theme_color: '#0f172a',
         background_color: '#ffffff',
         display: 'standalone',
@@ -20,15 +27,15 @@ export default defineConfig({
         scope: '/',
         icons: [
           {
-            src: '/icon-192.svg',
+            src: '/icons/app-icon-192.png',
             sizes: '192x192',
-            type: 'image/svg+xml',
+            type: 'image/png',
             purpose: 'any maskable',
           },
           {
-            src: '/icon-512.svg',
+            src: '/icons/app-icon-512.png',
             sizes: '512x512',
-            type: 'image/svg+xml',
+            type: 'image/png',
             purpose: 'any maskable',
           },
         ],

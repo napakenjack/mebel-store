@@ -5,11 +5,11 @@ import { orderStatuses } from '../../data/mockOrders'
 export function SettingsPage() {
   return (
     <div className="stack">
-      <Card title="Settings / Настройки" eyebrow="CRM">
+      <Card title="Settings / Настройки" eyebrow="Amanat Mebel">
         <dl className="detail-list">
           <div>
             <dt>Название магазина</dt>
-            <dd>Furniture CRM Demo</dd>
+            <dd>Amanat Mebel - ваш магазин мебели</dd>
           </div>
           <div>
             <dt>Телефон</dt>
@@ -24,12 +24,20 @@ export function SettingsPage() {
             <dd>Алматы</dd>
           </div>
           <div>
+            <dt>Адрес</dt>
+            <dd>проспект Абая, 120</dd>
+          </div>
+          <div>
             <dt>Менеджеры</dt>
             <dd>Алия, Данияр, Мадина</dd>
           </div>
           <div>
             <dt>Роли</dt>
             <dd>Администратор, менеджер, клиент</dd>
+          </div>
+          <div>
+            <dt>Стиль интерфейса</dt>
+            <dd>Slate / B2B / PWA-ready</dd>
           </div>
         </dl>
       </Card>
@@ -45,7 +53,11 @@ export function SettingsPage() {
           <dl className="detail-list compact">
             <div>
               <dt>App name</dt>
-              <dd>Furniture CRM</dd>
+              <dd>Amanat Mebel - ваш магазин мебели</dd>
+            </div>
+            <div>
+              <dt>Short name</dt>
+              <dd>Amanat Mebel</dd>
             </div>
             <div>
               <dt>Display</dt>
@@ -54,6 +66,18 @@ export function SettingsPage() {
             <div>
               <dt>Theme color</dt>
               <dd>#0f172a</dd>
+            </div>
+            <div>
+              <dt>192 icon</dt>
+              <dd>public/icons/app-icon-192.png</dd>
+            </div>
+            <div>
+              <dt>512 icon</dt>
+              <dd>public/icons/app-icon-512.png</dd>
+            </div>
+            <div>
+              <dt>Favicon</dt>
+              <dd>public/icons/favicon.png</dd>
             </div>
             <div>
               <dt>Документы</dt>

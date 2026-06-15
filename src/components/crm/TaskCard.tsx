@@ -1,13 +1,16 @@
 import { CalendarCheck } from 'lucide-react'
-import type { Task } from '../../types/crm'
+import type { Task, TaskStatus } from '../../types/crm'
 import { formatDate } from '../../utils/formatters'
 import { StatusBadge } from '../ui/StatusBadge'
 
 type TaskCardProps = {
   task: Task
+  onStatusChange?: (taskId: string, status: TaskStatus) => void
 }
 
-export function TaskCard({ task }: TaskCardProps) {
+const taskStatuses: TaskStatus[] = ['Новая', 'В работе', 'Готово', 'Просрочено']
+
+export function TaskCard({ task, onStatusChange }: TaskCardProps) {
   return (
     <article className="task-card">
       <div className="task-icon">
@@ -19,7 +22,22 @@ export function TaskCard({ task }: TaskCardProps) {
           {task.clientName} · {formatDate(task.dueDate)} · {task.assignee}
         </p>
       </div>
-      <StatusBadge status={task.status} />
+      {onStatusChange ? (
+        <select
+          aria-label="Статус задачи"
+          className="status-select"
+          onChange={(event) => onStatusChange(task.id, event.target.value as TaskStatus)}
+          value={task.status}
+        >
+          {taskStatuses.map((status) => (
+            <option key={status} value={status}>
+              {status}
+            </option>
+          ))}
+        </select>
+      ) : (
+        <StatusBadge status={task.status} />
+      )}
     </article>
   )
 }

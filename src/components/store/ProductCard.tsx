@@ -18,6 +18,7 @@ export function ProductCard({ product }: ProductCardProps) {
         <FurnitureImage
           alt={`${product.name}, категория ${product.category}`}
           fallbackLabel={product.name}
+          loading="eager"
           src={getProductImage(product.slug)}
         />
       </Link>

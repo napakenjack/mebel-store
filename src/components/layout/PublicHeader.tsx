@@ -10,9 +10,9 @@ export function PublicHeader() {
   return (
     <header className="public-header">
       <Link className="brand" to="/">
-        <span className="brand-mark">FC</span>
+        <span className="brand-mark">AM</span>
         <span>
-          <strong>Furniture CRM</strong>
+          <strong>Amanat Mebel</strong>
           <small>магазин + кабинет + CRM</small>
         </span>
       </Link>

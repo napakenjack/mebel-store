@@ -1,4 +1,5 @@
-import { ArrowRight, ExternalLink } from 'lucide-react'
+import { ArrowRight, CalendarDays, ExternalLink, Send } from 'lucide-react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import type { Order } from '../../types/crm'
 import { formatMoney, shortDate } from '../../utils/formatters'
@@ -8,9 +9,28 @@ import { StatusBadge } from '../ui/StatusBadge'
 type OrderCardProps = {
   order: Order
   onAdvance: (orderId: string) => void
+  onComment?: (orderId: string, comment: string) => void
+  onDeliveryDate?: (orderId: string, measureDate: string, deliveryDate: string) => void
 }
 
-export function OrderCard({ order, onAdvance }: OrderCardProps) {
+export function OrderCard({ order, onAdvance, onComment, onDeliveryDate }: OrderCardProps) {
+  const [comment, setComment] = useState('')
+  const [deliveryDate, setDeliveryDate] = useState(order.deliveryDate)
+
+  const submitComment = () => {
+    if (!comment.trim() || !onComment) {
+      return
+    }
+    onComment(order.id, comment.trim())
+    setComment('')
+  }
+
+  const updateDelivery = () => {
+    if (deliveryDate && onDeliveryDate) {
+      onDeliveryDate(order.id, order.measureDate, deliveryDate)
+    }
+  }
+
   return (
     <article className="order-card">
       <div className="crm-card-head">
@@ -39,6 +59,26 @@ export function OrderCard({ order, onAdvance }: OrderCardProps) {
           <dd>{order.manager}</dd>
         </div>
       </dl>
+      {onComment && (
+        <div className="comment-form compact-comment-form">
+          <input
+            onChange={(event) => setComment(event.target.value)}
+            placeholder="Быстрый комментарий"
+            value={comment}
+          />
+          <Button icon={<Send size={17} />} onClick={submitComment} variant="secondary">
+            Добавить
+          </Button>
+        </div>
+      )}
+      {onDeliveryDate && (
+        <div className="delivery-quick-edit">
+          <input onChange={(event) => setDeliveryDate(event.target.value)} type="date" value={deliveryDate} />
+          <Button icon={<CalendarDays size={17} />} onClick={updateDelivery} variant="ghost">
+            Перенести
+          </Button>
+        </div>
+      )}
       <div className="inline-actions">
         <Link className="text-link" to={`/admin/orders/${order.id}`}>
           <ExternalLink size={16} />

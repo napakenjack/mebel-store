@@ -32,11 +32,11 @@ export function HomePage() {
     <>
       <section className="hero-section">
         <div className="hero-copy">
-          <span className="eyebrow">PWA для мебельного бизнеса</span>
-          <h1>Мебель на заказ с витриной, заявками и CRM в одном приложении</h1>
+          <span className="eyebrow">Amanat Mebel</span>
+          <h1>Amanat Mebel - ваш магазин мебели</h1>
           <p>
-            Покупатель выбирает мебель и оставляет заявку, менеджер ведёт заказ по этапам, а
-            владелец видит заявки, выручку, документы и задачи.
+            Покупатель выбирает мебель и оставляет заявку, менеджер ведёт заказ по этапам, а владелец видит заявки,
+            выручку, документы и задачи в одной CRM/PWA-системе.
           </p>
           <div className="hero-actions">
             <Button icon={<ArrowRight size={18} />} to="/catalog">
@@ -104,6 +104,7 @@ export function HomePage() {
               <FurnitureImage
                 alt="Современная гостиная с диваном"
                 fallbackLabel="Интерьер"
+                loading="eager"
                 src={unsplashImages.livingRooms}
               />
             </div>
@@ -116,6 +117,7 @@ export function HomePage() {
               <FurnitureImage
                 alt="Современная кухня с островом"
                 fallbackLabel="Кухня"
+                loading="eager"
                 src={unsplashImages.kitchens}
               />
             </div>
@@ -128,6 +130,7 @@ export function HomePage() {
               <FurnitureImage
                 alt="Шкаф и прихожая в современном интерьере"
                 fallbackLabel="Хранение"
+                loading="eager"
                 src={unsplashImages.wardrobes}
               />
             </div>

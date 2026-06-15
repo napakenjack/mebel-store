@@ -1,13 +1,14 @@
-import { Download, LogOut, Store } from 'lucide-react'
+import { Download, LogOut, Menu, Store } from 'lucide-react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuthStore } from '../../store/authStore'
 import { Button } from '../ui/Button'
 
 type TopbarProps = {
   title: string
+  onMenuClick?: () => void
 }
 
-export function Topbar({ title }: TopbarProps) {
+export function Topbar({ title, onMenuClick }: TopbarProps) {
   const navigate = useNavigate()
   const session = useAuthStore((state) => state.session)
   const logout = useAuthStore((state) => state.logout)
@@ -16,6 +17,9 @@ export function Topbar({ title }: TopbarProps) {
 
   return (
     <header className="topbar">
+      <button aria-label="Открыть меню кабинета" className="shell-menu-button" onClick={onMenuClick} type="button">
+        <Menu size={20} />
+      </button>
       <div>
         <span className="eyebrow">Демо-режим</span>
         <h1>{title}</h1>

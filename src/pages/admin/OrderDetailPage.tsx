@@ -1,3 +1,4 @@
+import { Plus } from 'lucide-react'
 import type { FormEvent } from 'react'
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
@@ -12,19 +13,23 @@ import { formatDate, formatMoney } from '../../utils/formatters'
 export function OrderDetailPage() {
   const { orderId } = useParams()
   const order = useCrmStore((state) => state.orders.find((item) => item.id === orderId))
-  const documents = useCrmStore((state) => state.documents.filter((document) => document.orderId === orderId))
-  const tasks = useCrmStore((state) => state.tasks.filter((task) => task.orderId === orderId))
+  const allDocuments = useCrmStore((state) => state.documents)
+  const allTasks = useCrmStore((state) => state.tasks)
   const updateOrderStatus = useCrmStore((state) => state.updateOrderStatus)
   const updateOrderDates = useCrmStore((state) => state.updateOrderDates)
   const addOrderComment = useCrmStore((state) => state.addOrderComment)
   const markPrepayment = useCrmStore((state) => state.markPrepayment)
   const createDocument = useCrmStore((state) => state.createDocument)
   const sendDocument = useCrmStore((state) => state.sendDocument)
+  const createTask = useCrmStore((state) => state.createTask)
   const [comment, setComment] = useState('')
 
   if (!order) {
     return <EmptyState text="Откройте заказ из Kanban-доски." title="Заказ не найден" />
   }
+
+  const documents = allDocuments.filter((document) => document.orderId === orderId)
+  const tasks = allTasks.filter((task) => task.orderId === orderId)
 
   const submitComment = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -32,6 +37,16 @@ export function OrderDetailPage() {
       addOrderComment(order.id, comment.trim())
       setComment('')
     }
+  }
+
+  const addTask = () => {
+    createTask({
+      title: `Проверить следующий шаг по заказу ${order.number}`,
+      orderId: order.id,
+      clientName: order.clientName,
+      dueDate: '2026-06-15',
+      assignee: order.manager,
+    })
   }
 
   return (
@@ -49,6 +64,9 @@ export function OrderDetailPage() {
               </Button>
               <Button onClick={() => createDocument(order.id, 'договор')} variant="ghost">
                 Создать документ
+              </Button>
+              <Button icon={<Plus size={17} />} onClick={addTask} variant="ghost">
+                Создать задачу
               </Button>
             </div>
           </div>

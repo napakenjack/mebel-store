@@ -7,7 +7,7 @@ type BeforeInstallPromptEvent = Event & {
   userChoice: Promise<{ outcome: 'accepted' | 'dismissed'; platform: string }>
 }
 
-const DISMISS_KEY = 'furniture-crm-install-dismissed'
+const DISMISS_KEY = 'amanat-mebel-install-dismissed'
 
 export function InstallAppPopup() {
   const [open, setOpen] = useState(false)
@@ -70,7 +70,7 @@ export function InstallAppPopup() {
         <Smartphone size={26} />
       </div>
       <div>
-        <span className="eyebrow">Furniture CRM</span>
+        <span className="eyebrow">Amanat Mebel</span>
         <h2>Установите приложение на рабочий экран телефона</h2>
         <p>Работает как приложение: быстро открывается, удобно использовать с телефона и компьютера.</p>
       </div>

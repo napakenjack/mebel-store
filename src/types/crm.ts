@@ -47,6 +47,7 @@ export type Lead = {
   createdAt: string
   status: LeadStatus
   manager?: string
+  notes?: string[]
 }
 
 export type Order = {
