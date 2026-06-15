@@ -1,8 +1,12 @@
+import { Download } from 'lucide-react'
 import { Badge } from '../../components/ui/Badge'
+import { Button } from '../../components/ui/Button'
 import { Card } from '../../components/ui/Card'
 import { orderStatuses } from '../../data/mockOrders'
 
 export function SettingsPage() {
+  const requestInstall = () => window.dispatchEvent(new Event('open-install-popup'))
+
   return (
     <div className="stack">
       <Card title="Settings / Настройки" eyebrow="Amanat Mebel">
@@ -49,7 +53,14 @@ export function SettingsPage() {
             ))}
           </div>
         </Card>
-        <Card title="PWA-настройки">
+        <Card
+          action={
+            <Button icon={<Download size={17} />} onClick={requestInstall} variant="secondary">
+              Установить приложение
+            </Button>
+          }
+          title="PWA-настройки"
+        >
           <dl className="detail-list compact">
             <div>
               <dt>App name</dt>

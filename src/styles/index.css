@@ -1336,10 +1336,19 @@ th {
   gap: 8px;
 }
 
+.ios-help p {
+  color: var(--muted);
+  margin: 10px 0 0;
+}
+
 .ios-help ol {
   color: var(--muted);
   margin: 10px 0 0;
   padding-left: 22px;
+}
+
+.install-debug {
+  justify-self: start;
 }
 
 .compact-actions {
