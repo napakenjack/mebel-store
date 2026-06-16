@@ -1,12 +1,5 @@
-import { BrowserRouter } from 'react-router-dom'
-import { InstallAppPopup } from '../components/pwa/InstallAppPopup'
-import { AppRoutes } from './routes'
+import { DevelopmentLock } from '../components/system/DevelopmentLock'
 
 export function App() {
-  return (
-    <BrowserRouter>
-      <AppRoutes />
-      <InstallAppPopup />
-    </BrowserRouter>
-  )
+  return <DevelopmentLock />
 }
